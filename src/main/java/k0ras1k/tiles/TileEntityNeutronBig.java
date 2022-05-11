@@ -2,6 +2,7 @@ package k0ras1k.tiles;
 
 import fox.spiteful.avaritia.items.LudicrousItems;
 import fox.spiteful.avaritia.tile.TileEntityNeutron;
+import k0ras1k.reg.items.ItemList;
 import k0ras1k.reg.items.UpgradeRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,7 +23,7 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
         for (int i = 0; i < 4; ++i) {
             if (i != 2) {
                 if (this.getStackInSlot(i) != null) {
-                    if (this.getStackInSlot(i).getItem() == UpgradeRegister.ItemNeutronUpgradeSpeed) {
+                    if (this.getStackInSlot(i).getItem() == ItemList.ItemNeutronUpgradeSpeed) {
                         return 20;
                     }
                 }
@@ -35,7 +36,7 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
         for (int i = 0; i < 4; ++i) {
             if (i != 2) {
                 if (this.getStackInSlot(i) != null) {
-                    if (this.getStackInSlot(i).getItem() == UpgradeRegister.ItemNeutronUpgradeProd) {
+                    if (this.getStackInSlot(i).getItem() == ItemList.ItemNeutronUpgradeProd) {
                         return 4;
                     }
                 }
@@ -48,7 +49,7 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
         for (int i = 0; i < 4; ++i) {
             if (i != 2) {
                 if (this.getStackInSlot(i) != null) {
-                    if (this.getStackInSlot(i).getItem() == UpgradeRegister.ItemNeutronUpgradeIng) {
+                    if (this.getStackInSlot(i).getItem() == ItemList.ItemNeutronUpgradeIng) {
                         return 3;
                     }
                 }
@@ -281,7 +282,7 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
         for (int i = 0; i < 4; ++i) {
             if (i != 2) {
                 if (this.getStackInSlot(i) != null) {
-                    if (this.getStackInSlot(i).getItem() == UpgradeRegister.ItemNeutronUpgradeSpeed) {
+                    if (this.getStackInSlot(i).getItem() == ItemList.ItemNeutronUpgradeSpeed) {
                         return (int) (this.progress * 2.6);
                     }
                 }

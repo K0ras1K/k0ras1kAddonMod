@@ -9,6 +9,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import k0ras1k.network.K0ras1KPacketHandler;
 import k0ras1k.proxy.CommonProxy;
+import k0ras1k.reg.blocks.BlockList;
 import k0ras1k.reg.blocks.BlocksSolarPanelRegister;
 import k0ras1k.reg.blocks.MainBlocksRegister;
 import k0ras1k.reg.items.UpgradeRegister;
@@ -37,7 +38,7 @@ public class Main {
     public static final CreativeTabs lightBlocks = new CreativeTabs("lightBlocks") {
         @Override
         public Item getTabIconItem() {
-            return Item.getItemFromBlock(BlocksSolarPanelRegister.candy_panel_yellow);
+            return Item.getItemFromBlock(BlockList.candy_panel_yellow);
         }
     };
 

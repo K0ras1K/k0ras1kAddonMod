@@ -1,20 +1,17 @@
 package k0ras1k.reg.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import k0ras1k.Main;
-import k0ras1k.blocks.*;
+import k0ras1k.reg.blocks.BlockList.*;
 import k0ras1k.tiles.TileEntityBigFurnance;
 import k0ras1k.tiles.TileEntityNeutronBig;
-import k0ras1k.tiles.panels.TileEntitySolarPanel;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+
+import static k0ras1k.reg.blocks.BlockList.big_furnance;
+import static k0ras1k.reg.blocks.BlockList.neutron_collector_big;
 
 public class MainBlocksRegister {
 
 
 
-    public static Block neutron_collector_big = new BlockNeutronBig().setBlockName("neutron_collector_big");
-    public static Block big_furnance = new BlockBigFurnance().setBlockName("big_furnance");
 
 
 
