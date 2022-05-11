@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+FMLCorePlugin: k0ras1k.utils.K0ras1KHookLoader
+FMLCorePluginContainsFMLMod: true
+Created-By: 1.7.0 (Oracle Corporation)
