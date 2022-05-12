@@ -8,11 +8,12 @@ import ic2.core.block.comp.Redstone;
 import ic2.core.block.invslot.*;
 import ic2.core.init.MainConfig;
 import ic2.core.network.NetworkManager;
+import ic2.core.upgrade.IUpgradableBlock;
+import ic2.core.upgrade.IUpgradeItem;
 import ic2.core.upgrade.UpgradableProperty;
 import ic2.core.util.ConfigUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachine implements IHasGui {
+public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachine implements IHasGui, IUpgradableBlock {
 
     public final int defaultTier;
     public int soundTicker;
@@ -40,6 +41,7 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
     private AudioSource audioSource;
     private AudioSource audioSourceScrap;
     public final InvSlotOutput outputSlot;
+    public final InvSlotUpgrade upgradeSlot;
     public final InvSlotConsumableLiquid containerslot;
     protected final Redstone redstone;
 
@@ -50,6 +52,7 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
         this.containerslot = new InvSlotConsumableLiquidByList(this, "containerslot", 2, InvSlot.Access.I, 1, InvSlot.InvSide.TOP, InvSlotConsumableLiquid.OpType.Fill, new Fluid[]{FluidRegistry.getFluid("water")});
         this.defaultTier = 3;
         this.redstone = (Redstone) this.addComponent(new Redstone(this));
+        this.upgradeSlot = new InvSlotUpgrade(this, "upgrade", 3, 4);
     }
 
 
@@ -77,6 +80,13 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
         super.updateEntityServer();
         this.redstonePowered = false;
         boolean needsInvUpdate = false;
+
+        for (int i = 0; i < this.upgradeSlot.size(); ++i) {
+            ItemStack stack = this.upgradeSlot.get(i);
+            if (stack != null && stack.getItem() instanceof IUpgradeItem && ((IUpgradeItem) stack.getItem()).onTick(stack, this)) {
+                needsInvUpdate = true;
+            }
+        }
 
 
         if (!this.redstone.hasRedstoneInput() && !(this.energy <= 0.0D)) {
@@ -177,51 +187,6 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
     }
 
     public void onNetworkUpdate(String field) {
-        if (field.equals("state") && this.prevState != this.state) {
-            switch (this.state) {
-                case 0:
-                    if (this.audioSource != null) {
-                        this.audioSource.stop();
-                    }
-
-                    if (this.audioSourceScrap != null) {
-                        this.audioSourceScrap.stop();
-                    }
-                    break;
-                case 1:
-                    if (this.audioSource == null) {
-                        this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, "Generators/MassFabricator/MassFabLoop.ogg", true, false, IC2.audioManager.getDefaultVolume());
-                    }
-
-                    if (this.audioSource != null) {
-                        this.audioSource.play();
-                    }
-
-                    if (this.audioSourceScrap != null) {
-                        this.audioSourceScrap.stop();
-                    }
-                    break;
-                case 2:
-                    if (this.audioSource == null) {
-                        this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, "Generators/MassFabricator/MassFabLoop.ogg", true, false, IC2.audioManager.getDefaultVolume());
-                    }
-
-                    if (this.audioSourceScrap == null) {
-                        this.audioSourceScrap = IC2.audioManager.createSource(this, PositionSpec.Center, "Generators/MassFabricator/MassFabScrapSolo.ogg", true, false, IC2.audioManager.getDefaultVolume());
-                    }
-
-                    if (this.audioSource != null) {
-                        this.audioSource.play();
-                    }
-
-                    if (this.audioSourceScrap != null) {
-                        this.audioSourceScrap.play();
-                    }
-            }
-
-            this.prevState = this.state;
-        }
-
         super.onNetworkUpdate(field);
     }
 
@@ -240,10 +205,21 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
 
     public void onLoaded() {
         super.onLoaded();
+        if (IC2.platform.isSimulating()) {
+            this.setUpgradestat();
+        }
     }
 
     public void markDirty() {
         super.markDirty();
+        if (IC2.platform.isSimulating()) {
+            this.setUpgradestat();
+        }
+    }
+
+    public void setUpgradestat() {
+        this.upgradeSlot.onChanged();
+        this.setTier(applyModifier(this.defaultTier, this.upgradeSlot.extraTier, 1.0D));
     }
 
 
@@ -267,6 +243,13 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
 
     public Set<UpgradableProperty> getUpgradableProperties() {
         return EnumSet.of(UpgradableProperty.RedstoneSensitive, UpgradableProperty.Transformer, UpgradableProperty.ItemConsuming, UpgradableProperty.ItemProducing, UpgradableProperty.FluidProducing);
+    }
+
+    public int getMatterValue() {
+        if (this.fluidTank != null){
+            return (int) (this.fluidTank.getFluidAmount() * 0.0075);
+        }
+        return 1;
     }
 
 }

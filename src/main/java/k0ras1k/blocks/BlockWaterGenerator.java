@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class BlockWaterGenerator extends BlockContainer {
 
-    private IIcon top, sides, front;
+    private IIcon sides, front, frontactive;
     private Random randy = new Random();
 
     public BlockWaterGenerator() {
@@ -39,34 +39,30 @@ public class BlockWaterGenerator extends BlockContainer {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        this.top = iconRegister.registerIcon("k0ras1k:collector_top");
-        this.sides = iconRegister.registerIcon("k0ras1k:collector_side");
-        this.front = iconRegister.registerIcon("k0ras1k:collector_front");
+        this.sides = iconRegister.registerIcon("k0ras1k:water_generator_side");
+        this.front = iconRegister.registerIcon("k0ras1k:water_generator_off");
+        this.frontactive = iconRegister.registerIcon("k0ras1k:water_generator_on");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-        if (side == 1)
-            return top;
         int facing = 2;
         TileEntityWaterGenerator machine = (TileEntityWaterGenerator) world.getTileEntity(x, y, z);
         if (machine != null)
             facing = machine.getFacing();
         if (side == facing)
-            return front;
+            return this.front;
         else
-            return sides;
+            return this.sides;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata) {
-        if (side == 1)
-            return top;
         if (side == 3)
-            return front;
-        return sides;
+            return this.front;
+        return this.sides;
     }
 
     @Override

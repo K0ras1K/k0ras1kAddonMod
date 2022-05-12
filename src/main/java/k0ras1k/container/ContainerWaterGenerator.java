@@ -10,8 +10,12 @@ import java.util.List;
 public class ContainerWaterGenerator extends ContainerFullInv<TileEntityWaterGenerator> {
     public ContainerWaterGenerator(EntityPlayer entityPlayer, TileEntityWaterGenerator tileEntity1) {
         super(entityPlayer, tileEntity1, 166);
-        this.addSlotToContainer(new SlotInvSlot(tileEntity1.outputSlot, 0, 125, 59));
-        this.addSlotToContainer(new SlotInvSlot(tileEntity1.containerslot, 0, 125, 23));
+        this.addSlotToContainer(new SlotInvSlot(tileEntity1.outputSlot, 0, 121, 63));
+        this.addSlotToContainer(new SlotInvSlot(tileEntity1.containerslot, 0, 121, 23));
+
+        for(int i = 0; i < 4; ++i) {
+            this.addSlotToContainer(new SlotInvSlot(tileEntity1.upgradeSlot, i, 152, 8 + i * 18));
+        }
     }
 
     public List<String> getNetworkedFields() {
