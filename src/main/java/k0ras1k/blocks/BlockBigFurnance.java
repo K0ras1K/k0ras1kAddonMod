@@ -14,12 +14,12 @@ public class BlockBigFurnance extends BlockContainer {
 
     public BlockBigFurnance() {
         super(Material.iron);
-        setStepSound(Block.soundTypeMetal);
-        setHardness(20.0F);
-        setBlockName("Big_Furnance");
-        setHarvestLevel("pickaxe", 3);
-        setCreativeTab(Main.lightBlocks);
-        setLightLevel(1F);
+        this.setStepSound(Block.soundTypeMetal);
+        this.setHardness(20.0F);
+        this.setBlockName("Big_Furnance");
+        this.setHarvestLevel("pickaxe", 3);
+        this.setCreativeTab(Main.lightBlocks);
+        this.setLightLevel(1F);
     }
 
     @Override

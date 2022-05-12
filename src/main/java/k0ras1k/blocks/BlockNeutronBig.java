@@ -28,12 +28,12 @@ public class BlockNeutronBig extends BlockContainer {
 
     public BlockNeutronBig() {
         super(Material.iron);
-        setStepSound(Block.soundTypeMetal);
-        setHardness(20.0F);
-        setBlockName("neutron_collector");
-        setHarvestLevel("pickaxe", 3);
-        setCreativeTab(Main.lightBlocks);
-        setLightLevel(1F);
+        this.setStepSound(Block.soundTypeMetal);
+        this.setHardness(20.0F);
+        this.setBlockName("neutron_collector");
+        this.setHarvestLevel("pickaxe", 3);
+        this.setCreativeTab(Main.lightBlocks);
+        this.setLightLevel(1F);
     }
 
     @SideOnly(Side.CLIENT)
