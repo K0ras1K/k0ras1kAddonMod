@@ -10,6 +10,7 @@ import k0ras1k.utils.MTRecipeManager.RawItemData;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -71,41 +72,40 @@ public class MTRecipeConfig {
     public static void addDefaultRecipe(Object input, int inputStackSize, Object output, int outputStackSize, Object catalizator, int energy) {
         String result = "";
         result = result + "# ";
-        result = result + (input instanceof ItemStack ? ((ItemStack)input).getDisplayName() : (String)input);
+        result = result + (input instanceof ItemStack ? ((ItemStack) input).getDisplayName() : (String) input);
         result = result + " -> ";
-        result = result + (output instanceof ItemStack ? ((ItemStack)output).getDisplayName() : (String)output);
+        result = result + (output instanceof ItemStack ? ((ItemStack) output).getDisplayName() : (String) output);
         result = result + String.format(" [%d EU]", energy);
-        result = result + (catalizator instanceof ItemStack ? ((ItemStack)catalizator).getDisplayName() : (String)catalizator);
+        result = result + (catalizator instanceof ItemStack ? ((ItemStack) catalizator).getDisplayName() : (String) catalizator);
         defaultLines.add(result);
         result = "";
         if (input instanceof String) {
-            result = result + "oredict:" + (String)input + "; ";
+            result = result + "oredict:" + (String) input + "; ";
         } else {
             if (!(input instanceof ItemStack)) {
                 throw new RuntimeException("addDefaultRecipe(): input unsupported type: " + input.getClass().getCanonicalName());
             }
 
-            result = result + formatItemData(MTRecipeManager.getItemData((ItemStack)input)) + "-" + ((ItemStack)input).getItemDamage() + ":" + ((ItemStack)input).stackSize + "; ";
+            result = result + formatItemData(MTRecipeManager.getItemData((ItemStack) input)) + "-" + ((ItemStack) input).getItemDamage() + ":" + ((ItemStack) input).stackSize + "; ";
         }
 
         if (output instanceof String) {
-            result = result + "oredict:" + (String)output + "; ";
+            result = result + "oredict:" + (String) output + "; ";
         } else {
             if (!(output instanceof ItemStack)) {
                 throw new RuntimeException("addDefaultRecipe(): output unsupported type: " + output.getClass().getCanonicalName());
             }
 
-            result = result + formatItemData(MTRecipeManager.getItemData((ItemStack)output)) + "-" + ((ItemStack)output).getItemDamage() + ":" + ((ItemStack)output).stackSize + "; ";
+            result = result + formatItemData(MTRecipeManager.getItemData((ItemStack) output)) + "-" + ((ItemStack) output).getItemDamage() + ":" + ((ItemStack) output).stackSize + "; ";
         }
 
-        if (catalizator instanceof String){
-            result = result + "oredict:" + (String)catalizator;
-        }
-        else{
+        if (catalizator instanceof String) {
+            result = result + "oredict:" + (String) catalizator;
+        } else {
             if (!(catalizator instanceof ItemStack)) {
                 throw new RuntimeException("addDefaultRecipe(): output unsupported type: " + output.getClass().getCanonicalName());
             }
-            result = result + formatItemData(MTRecipeManager.getItemData((ItemStack)catalizator)) + "-" + ((ItemStack)catalizator).getItemDamage() + ":" + ((ItemStack)catalizator).stackSize;
+            result = result + formatItemData(MTRecipeManager.getItemData((ItemStack) catalizator)) + "-" + ((ItemStack) catalizator).getItemDamage() + ":" + ((ItemStack) catalizator).stackSize;
 
         }
 
@@ -141,8 +141,8 @@ public class MTRecipeConfig {
         System.out.println(defaultLines.size());
         Iterator i$ = defaultLines.iterator();
 
-        while(i$.hasNext()) {
-            String s = (String)i$.next();
+        while (i$.hasNext()) {
+            String s = (String) i$.next();
 
             try {
                 bw.append(s + "\r\n");
@@ -174,8 +174,8 @@ public class MTRecipeConfig {
             String line = "";
             int lineNumber = 0;
 
-            while(true) {
-                while(true) {
+            while (true) {
+                while (true) {
                     do {
                         if ((line = br.readLine()) == null) {
                             br.close();
@@ -185,18 +185,18 @@ public class MTRecipeConfig {
                             Main.addLog("* * * * * * Loaded recipes list * * * * * * ");
                             Iterator i$ = list.iterator();
 
-                            while(i$.hasNext()) {
-                                MTRecipeRecord record = (MTRecipeRecord)i$.next();
+                            while (i$.hasNext()) {
+                                MTRecipeRecord record = (MTRecipeRecord) i$.next();
                                 Object input = record.inputStack;
                                 Object output = record.outputStack;
                                 Object catalizator = record.catalizatorStack;
                                 int energy = record.energyPerOperation;
                                 String result = "";
-                                result = result + (input instanceof ItemStack ? ((ItemStack)input).getDisplayName() : (String)input);
+                                result = result + (input instanceof ItemStack ? ((ItemStack) input).getDisplayName() : (String) input);
                                 result = result + " -> ";
-                                result = result + (output instanceof ItemStack ? ((ItemStack)output).getDisplayName() : (String)output);
+                                result = result + (output instanceof ItemStack ? ((ItemStack) output).getDisplayName() : (String) output);
                                 result = result + String.format(" [%d EU]", energy);
-                                result = result + "; " + (catalizator instanceof  ItemStack ? ((ItemStack)catalizator).getDisplayName() : (String) catalizator);
+                                result = result + "; " + (catalizator instanceof ItemStack ? ((ItemStack) catalizator).getDisplayName() : (String) catalizator);
                                 Main.addLog(result);
                             }
 
@@ -206,7 +206,7 @@ public class MTRecipeConfig {
 
                         ++lineNumber;
                         line = line.replace("\r", "").replace("\n", "");
-                    } while(line.trim().startsWith("#"));
+                    } while (line.trim().startsWith("#"));
 
                     if (line.indexOf("#") != 0 && line.indexOf("version") != 0) {
                         if (line.indexOf("#") > 0) {
@@ -252,12 +252,12 @@ public class MTRecipeConfig {
                             if (outputStacks == null) {
                                 Main.addLog(String.format("Ignoring line %d, failed to parse output.", lineNumber));
                             } else {
-                                ItemStack outputStack = (ItemStack)outputStacks.get(0);
-                                ItemStack catalizatorStack = (ItemStack)catalizatorStacks.get(0);
+                                ItemStack outputStack = (ItemStack) outputStacks.get(0);
+                                ItemStack catalizatorStack = (ItemStack) catalizatorStacks.get(0);
                                 Iterator i$ = inputStacks.iterator();
 
-                                while(i$.hasNext()) {
-                                    ItemStack is = (ItemStack)i$.next();
+                                while (i$.hasNext()) {
+                                    ItemStack is = (ItemStack) i$.next();
                                     MTRecipeRecord recipeToAdd = new MTRecipeRecord();
                                     recipeToAdd.inputStack = is.copy();
                                     recipeToAdd.outputStack = outputStack.copy();
@@ -289,8 +289,8 @@ public class MTRecipeConfig {
 
                 List<ItemStack> retrOreDict = OreDictionary.getOres(split[1]);
                 if (retrOreDict.size() > 0) {
-                    for(int i = 0; i < retrOreDict.size(); ++i) {
-                        ItemStack tmpItemStack = ((ItemStack)retrOreDict.get(i)).copy();
+                    for (int i = 0; i < retrOreDict.size(); ++i) {
+                        ItemStack tmpItemStack = ((ItemStack) retrOreDict.get(i)).copy();
                         list.add(new ItemStack(tmpItemStack.getItem(), stackSize, tmpItemStack.getItemDamage()));
                     }
                 }

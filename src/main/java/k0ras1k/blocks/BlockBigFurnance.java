@@ -28,14 +28,10 @@ public class BlockBigFurnance extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-    {
-        if (world.isRemote)
-        {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+        if (world.isRemote) {
             return true;
-        }
-        else
-        {
+        } else {
             player.openGui(Main.instance, 2, world, x, y, z);
             return true;
         }

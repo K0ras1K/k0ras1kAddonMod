@@ -18,18 +18,16 @@ import net.minecraft.world.World;
 public class GuiHandler implements IGuiHandler {
 
     @Override
-    public Object getClientGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z){
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         Block block = world.getTileEntity(x, y, z).getBlockType();
         if (tileEntity != null) {
-            if (tileEntity instanceof TileEntityNeutronBig){
-                return new GUINeutronBig(player.inventory, (TileEntityNeutronBig)world.getTileEntity(x, y, z));
-            }
-            else if (tileEntity instanceof TileEntityBigFurnance) {
+            if (tileEntity instanceof TileEntityNeutronBig) {
+                return new GUINeutronBig(player.inventory, (TileEntityNeutronBig) world.getTileEntity(x, y, z));
+            } else if (tileEntity instanceof TileEntityBigFurnance) {
                 return new GuiBigFurnance(player.inventory, new TileEntityBigFurnance());
-            }
-            else if (tileEntity instanceof TileEntitySolarPanel){
-                return new GuiCandyPanel(player.inventory, (TileEntitySolarPanel)world.getTileEntity(x, y, z));
+            } else if (tileEntity instanceof TileEntitySolarPanel) {
+                return new GuiCandyPanel(player.inventory, (TileEntitySolarPanel) world.getTileEntity(x, y, z));
             }
 
         }
@@ -38,26 +36,22 @@ public class GuiHandler implements IGuiHandler {
     }
 
     @Override
-    public Object getServerGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z){
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         Block block = world.getTileEntity(x, y, z).getBlockType();
         if (tileEntity != null) {
             if (tileEntity instanceof TileEntityNeutronBig) {
                 return new ContainerNeutronBig(player.inventory, (TileEntityNeutronBig) world.getTileEntity(x, y, z));
-            } else if (tileEntity instanceof TileEntityBigFurnance){
+            } else if (tileEntity instanceof TileEntityBigFurnance) {
                 return new ContainerBigFurnance(player.inventory, new TileEntityBigFurnance());
-            }
-            else if (tileEntity instanceof TileEntitySolarPanel){
+            } else if (tileEntity instanceof TileEntitySolarPanel) {
                 return new ContainerSolarPanel(player.inventory, (TileEntitySolarPanel) world.getTileEntity(x, y, z));
-            }
-            else if (tileEntity instanceof TileEntityTransformer){
+            } else if (tileEntity instanceof TileEntityTransformer) {
                 return new ContainerTransformer(player.inventory, (TileEntityTransformer) world.getTileEntity(x, y, z));
-            }
-            else {
+            } else {
                 return null;
             }
-        }
-        else{
+        } else {
             return null;
         }
     }

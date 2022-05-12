@@ -12,7 +12,9 @@ import k0ras1k.utils.MTRecipeManager;
 import k0ras1k.utils.MTRecipeRecord;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.client.FMLClientHandler;
+
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
@@ -60,9 +62,9 @@ public class GuiTransformer extends GuiContainer {
         guiTextList.add(textToAdd);
         this.maxTextXPos = 0;
 
-        for(int i = 0; i < guiTextList.size(); ++i) {
-            if (((GuiTransformer.captionRecord)guiTextList.get(i)).textWidth > this.maxTextXPos) {
-                this.maxTextXPos = ((GuiTransformer.captionRecord)guiTextList.get(i)).textWidth;
+        for (int i = 0; i < guiTextList.size(); ++i) {
+            if (((GuiTransformer.captionRecord) guiTextList.get(i)).textWidth > this.maxTextXPos) {
+                this.maxTextXPos = ((GuiTransformer.captionRecord) guiTextList.get(i)).textWidth;
             }
         }
 
@@ -72,7 +74,7 @@ public class GuiTransformer extends GuiContainer {
         String tmpString = "";
         int count = 0;
 
-        for(int i = number.length() - 1; i >= 0; --i) {
+        for (int i = number.length() - 1; i >= 0; --i) {
             if (count == 3) {
                 tmpString = " " + tmpString;
                 count = 0;
@@ -93,21 +95,21 @@ public class GuiTransformer extends GuiContainer {
         int nmPos = (this.xSize - this.fontRendererObj.getStringWidth(formatDeviceName)) / 2;
         this.fontRendererObj.drawString(formatDeviceName, nmPos, 8, 16777215);
         if (this.tileentity.lastProgress <= 0 && !this.tileentity.doWork) {
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(0)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(0)).textWidth - 50, yOffset - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(1)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(1)).textWidth - 50, yOffset + yTextInterval * 1 - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(2)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(2)).textWidth - 50, yOffset + yTextInterval * 2 - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(3)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(3)).textWidth - 50, yOffset + yTextInterval * 3 - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(4)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(4)).textWidth - 50, yOffset + yTextInterval * 4 - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(0)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(0)).textWidth - 50, yOffset - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(1)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(1)).textWidth - 50, yOffset + yTextInterval * 1 - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(2)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(2)).textWidth - 50, yOffset + yTextInterval * 2 - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(3)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(3)).textWidth - 50, yOffset + yTextInterval * 3 - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(4)).textCaption, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(4)).textWidth - 50, yOffset + yTextInterval * 4 - 10, 16777215);
         } else {
-            ItemStack inputStack = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(this.tileentity.lastRecipeNumber)).inputStack;
-            ItemStack outputStack = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(this.tileentity.lastRecipeNumber)).outputStack;
+            ItemStack inputStack = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(this.tileentity.lastRecipeNumber)).inputStack;
+            ItemStack outputStack = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(this.tileentity.lastRecipeNumber)).outputStack;
             String inputEuFormated = parsingNumber(String.valueOf(this.tileentity.inputEU));
-            String energyPerOpFormated = parsingNumber(String.valueOf(((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(this.tileentity.lastRecipeNumber)).energyPerOperation));
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(0)).textCaption + inputStack.getDisplayName(), xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(0)).textWidth - 50, yOffset - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(1)).textCaption + outputStack.getDisplayName(), xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(1)).textWidth - 50, yOffset + yTextInterval * 1 - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(2)).textCaption + energyPerOpFormated + " EU", xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(2)).textWidth - 50, yOffset + yTextInterval * 2 - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(3)).textCaption + inputEuFormated, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(3)).textWidth - 50, yOffset + yTextInterval * 3 - 10, 16777215);
-            this.fontRendererObj.drawString(((GuiTransformer.captionRecord)guiTextList.get(4)).textCaption + this.tileentity.lastProgress + "%", xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord)guiTextList.get(4)).textWidth - 50, yOffset + yTextInterval * 4 - 10, 16777215);
+            String energyPerOpFormated = parsingNumber(String.valueOf(((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(this.tileentity.lastRecipeNumber)).energyPerOperation));
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(0)).textCaption + inputStack.getDisplayName(), xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(0)).textWidth - 50, yOffset - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(1)).textCaption + outputStack.getDisplayName(), xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(1)).textWidth - 50, yOffset + yTextInterval * 1 - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(2)).textCaption + energyPerOpFormated + " EU", xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(2)).textWidth - 50, yOffset + yTextInterval * 2 - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(3)).textCaption + inputEuFormated, xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(3)).textWidth - 50, yOffset + yTextInterval * 3 - 10, 16777215);
+            this.fontRendererObj.drawString(((GuiTransformer.captionRecord) guiTextList.get(4)).textCaption + this.tileentity.lastProgress + "%", xOffset + this.maxTextXPos - ((GuiTransformer.captionRecord) guiTextList.get(4)).textWidth - 50, yOffset + yTextInterval * 4 - 10, 16777215);
         }
 
     }

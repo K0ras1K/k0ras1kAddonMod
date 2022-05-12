@@ -30,10 +30,10 @@ public class BaseElectricSword extends ItemSword implements IElectricItem {
         this.transferLimit = transferLimit;
         this.providesEnergy = providesEnergy;
 
-        setMaxDamage(27);
-        setMaxStackSize(1);
-        setNoRepair();
-        setCreativeTab(Main.lightBlocks);
+        this.setMaxDamage(27);
+        this.setMaxStackSize(1);
+        this.setNoRepair();
+        this.setCreativeTab(Main.lightBlocks);
     }
 
     public void useEnergy(ItemStack itemStack, double energyAmount) {
@@ -56,8 +56,7 @@ public class BaseElectricSword extends ItemSword implements IElectricItem {
         NBTTagCompound tags = itemStack.getTagCompound();
         if (tags != null) {
             list.add("EU: " + itemStack.stackTagCompound.getInteger("charge") + " / " + this.getMaxCharge(itemStack));
-        }
-        else{
+        } else {
             list.add("EU: " + "0" + " / " + this.getMaxCharge(itemStack));
         }
     }

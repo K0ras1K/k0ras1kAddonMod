@@ -2,12 +2,13 @@ package k0ras1k.network;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 
-public class PacketGUIPressButton extends IPacket{
+public class PacketGUIPressButton extends IPacket {
     public int dimID;
     public int x;
     public int y;
@@ -59,7 +60,7 @@ public class PacketGUIPressButton extends IPacket{
             if (ws != null) {
                 TileEntity te = ws.getTileEntity(this.x, this.y, this.z);
                 if (te != null && te instanceof IHasButton) {
-                    ((IHasButton)te).handleButtonClick(this.buttonID);
+                    ((IHasButton) te).handleButtonClick(this.buttonID);
                 }
             }
         } catch (Throwable var3) {

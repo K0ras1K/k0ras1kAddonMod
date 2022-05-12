@@ -16,18 +16,15 @@ public class GuiBigFurnance extends GuiContainer {
     public TileEntityBigFurnance tileentity;
 
 
-
     public GuiBigFurnance(InventoryPlayer player, TileEntityBigFurnance machine) {
         super(new ContainerBigFurnance(player, machine));
     }
 
-    protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
-    {
+    protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
         String s = StatCollector.translateToLocal("container.big_furnance");
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 13487565);
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 13487565);
     }
-
 
 
     @Override

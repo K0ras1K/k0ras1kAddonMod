@@ -4,6 +4,8 @@ import k0ras1k.Main;
 import net.minecraft.item.Item;
 
 public class ItemNeutronUpgrade extends Item {
+
+
     public ItemNeutronUpgrade(String name, String texture) {
         this.setUnlocalizedName(name);
         this.setCreativeTab(Main.lightBlocks);

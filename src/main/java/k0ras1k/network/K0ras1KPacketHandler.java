@@ -29,18 +29,18 @@ public class K0ras1KPacketHandler {
     }
 
     public static void sendToAllPlayers(IPacket packet) {
-        ((FMLEmbeddedChannel)channels.get(Side.SERVER)).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.ALL);
-        ((FMLEmbeddedChannel)channels.get(Side.SERVER)).writeOutbound(new Object[]{packet});
+        ((FMLEmbeddedChannel) channels.get(Side.SERVER)).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.ALL);
+        ((FMLEmbeddedChannel) channels.get(Side.SERVER)).writeOutbound(new Object[]{packet});
     }
 
     public static void sendToServer(IPacket packet) {
-        ((FMLEmbeddedChannel)channels.get(Side.CLIENT)).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.TOSERVER);
-        ((FMLEmbeddedChannel)channels.get(Side.CLIENT)).writeOutbound(new Object[]{packet});
+        ((FMLEmbeddedChannel) channels.get(Side.CLIENT)).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.TOSERVER);
+        ((FMLEmbeddedChannel) channels.get(Side.CLIENT)).writeOutbound(new Object[]{packet});
     }
 
     public static void sendToPlayer(EntityPlayer ep, IPacket packet) {
-        ((FMLEmbeddedChannel)channels.get(Side.SERVER)).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
-        ((FMLEmbeddedChannel)channels.get(Side.SERVER)).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(ep);
-        ((FMLEmbeddedChannel)channels.get(Side.SERVER)).writeOutbound(new Object[]{packet});
+        ((FMLEmbeddedChannel) channels.get(Side.SERVER)).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
+        ((FMLEmbeddedChannel) channels.get(Side.SERVER)).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(ep);
+        ((FMLEmbeddedChannel) channels.get(Side.SERVER)).writeOutbound(new Object[]{packet});
     }
 }

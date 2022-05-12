@@ -17,6 +17,7 @@ public class ClientProxy extends CommonProxy {
         MTAPI.manager = MTRecipeManager.instance;
         MTRecipeManager.instance.initRecipes();
     }
+
     public void registerRenderers() {
         Main.blockTransformerRenderID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new BlockTransformerRender());

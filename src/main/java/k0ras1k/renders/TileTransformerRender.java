@@ -35,7 +35,7 @@ public class TileTransformerRender extends TileEntitySpecialRenderer {
 
     public static int getTextureSize(String s, int dv) {
         if (textureSizeCache.get(Arrays.asList(s, dv)) != null) {
-            return (Integer)textureSizeCache.get(Arrays.asList(s, dv));
+            return (Integer) textureSizeCache.get(Arrays.asList(s, dv));
         } else {
             try {
                 InputStream inputstream = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("k0ras1k", s)).getInputStream();
@@ -70,9 +70,9 @@ public class TileTransformerRender extends TileEntitySpecialRenderer {
         float f4 = ActiveRenderInfo.rotationYZ;
         float f5 = ActiveRenderInfo.rotationXY;
         float scaleCore = 0.35F;
-        float posX = (float)x + 0.5F;
-        float posY = (float)y + 0.5F;
-        float posZ = (float)z + 0.5F;
+        float posX = (float) x + 0.5F;
+        float posY = (float) y + 0.5F;
+        float posZ = (float) z + 0.5F;
         Tessellator tessellator = Tessellator.instance;
         Color color = new Color(12648447);
         GL11.glPushMatrix();
@@ -81,20 +81,20 @@ public class TileTransformerRender extends TileEntitySpecialRenderer {
         GL11.glBlendFunc(770, 1);
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(plazmaTextloc);
         int i = this.ticker % 16;
-        float size4 = (float)(size1 * 4);
-        float float_sizeMinus0_01 = (float)size1 - 0.01F;
-        float float_texNudge = 1.0F / ((float)(size1 * size1) * 2.0F);
-        float float_reciprocal = 1.0F / (float)size1;
-        float x0 = ((float)(i % 4 * size1) + 0.0F) / size4;
-        float x1 = ((float)(i % 4 * size1) + float_sizeMinus0_01) / size4;
-        float x2 = ((float)(i / 4 * size1) + 0.0F) / size4;
-        float x3 = ((float)(i / 4 * size1) + float_sizeMinus0_01) / size4;
+        float size4 = (float) (size1 * 4);
+        float float_sizeMinus0_01 = (float) size1 - 0.01F;
+        float float_texNudge = 1.0F / ((float) (size1 * size1) * 2.0F);
+        float float_reciprocal = 1.0F / (float) size1;
+        float x0 = ((float) (i % 4 * size1) + 0.0F) / size4;
+        float x1 = ((float) (i % 4 * size1) + float_sizeMinus0_01) / size4;
+        float x2 = ((float) (i / 4 * size1) + 0.0F) / size4;
+        float x3 = ((float) (i / 4 * size1) + float_sizeMinus0_01) / size4;
         tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F((float)color.getRed() / 255.0F, (float)color.getGreen() / 255.0F, (float)color.getBlue() / 255.0F, 1.0F);
-        tessellator.addVertexWithUV((double)(posX - f1 * scaleCore - f4 * scaleCore), (double)(posY - f2 * scaleCore), (double)(posZ - f3 * scaleCore - f5 * scaleCore), (double)x1, (double)x3);
-        tessellator.addVertexWithUV((double)(posX - f1 * scaleCore + f4 * scaleCore), (double)(posY + f2 * scaleCore), (double)(posZ - f3 * scaleCore + f5 * scaleCore), (double)x1, (double)x2);
-        tessellator.addVertexWithUV((double)(posX + f1 * scaleCore + f4 * scaleCore), (double)(posY + f2 * scaleCore), (double)(posZ + f3 * scaleCore + f5 * scaleCore), (double)x0, (double)x2);
-        tessellator.addVertexWithUV((double)(posX + f1 * scaleCore - f4 * scaleCore), (double)(posY - f2 * scaleCore), (double)(posZ + f3 * scaleCore - f5 * scaleCore), (double)x0, (double)x3);
+        tessellator.setColorRGBA_F((float) color.getRed() / 255.0F, (float) color.getGreen() / 255.0F, (float) color.getBlue() / 255.0F, 1.0F);
+        tessellator.addVertexWithUV((double) (posX - f1 * scaleCore - f4 * scaleCore), (double) (posY - f2 * scaleCore), (double) (posZ - f3 * scaleCore - f5 * scaleCore), (double) x1, (double) x3);
+        tessellator.addVertexWithUV((double) (posX - f1 * scaleCore + f4 * scaleCore), (double) (posY + f2 * scaleCore), (double) (posZ - f3 * scaleCore + f5 * scaleCore), (double) x1, (double) x2);
+        tessellator.addVertexWithUV((double) (posX + f1 * scaleCore + f4 * scaleCore), (double) (posY + f2 * scaleCore), (double) (posZ + f3 * scaleCore + f5 * scaleCore), (double) x0, (double) x2);
+        tessellator.addVertexWithUV((double) (posX + f1 * scaleCore - f4 * scaleCore), (double) (posY - f2 * scaleCore), (double) (posZ + f3 * scaleCore - f5 * scaleCore), (double) x0, (double) x3);
         tessellator.draw();
         GL11.glDisable(3042);
         GL11.glDepthMask(true);
@@ -106,23 +106,23 @@ public class TileTransformerRender extends TileEntitySpecialRenderer {
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(particlesTextloc);
         int qq = this.ticker % 16;
         i = 24 + qq;
-        float size8 = (float)(size2 * 8);
-        float_sizeMinus0_01 = (float)size2 - 0.01F;
-        float_texNudge = 1.0F / ((float)(size2 * size2) * 2.0F);
-        float_reciprocal = 1.0F / (float)size2;
-        x0 = ((float)(i % 8 * size2) + 0.0F) / size8;
-        x1 = ((float)(i % 8 * size2) + float_sizeMinus0_01) / size8;
-        x2 = ((float)(i / 8 * size2) + 0.0F) / size8;
-        x3 = ((float)(i / 8 * size2) + float_sizeMinus0_01) / size8;
-        float var11 = MathHelper.sin((float)this.ticker / 10.0F) * 0.1F;
+        float size8 = (float) (size2 * 8);
+        float_sizeMinus0_01 = (float) size2 - 0.01F;
+        float_texNudge = 1.0F / ((float) (size2 * size2) * 2.0F);
+        float_reciprocal = 1.0F / (float) size2;
+        x0 = ((float) (i % 8 * size2) + 0.0F) / size8;
+        x1 = ((float) (i % 8 * size2) + float_sizeMinus0_01) / size8;
+        x2 = ((float) (i / 8 * size2) + 0.0F) / size8;
+        x3 = ((float) (i / 8 * size2) + float_sizeMinus0_01) / size8;
+        float var11 = MathHelper.sin((float) this.ticker / 10.0F) * 0.1F;
         scaleCore = 0.4F + var11;
         tessellator.startDrawingQuads();
         tessellator.setBrightness(240);
         tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
-        tessellator.addVertexWithUV((double)(posX - f1 * scaleCore - f4 * scaleCore), (double)(posY - f2 * scaleCore), (double)(posZ - f3 * scaleCore - f5 * scaleCore), (double)x1, (double)x3);
-        tessellator.addVertexWithUV((double)(posX - f1 * scaleCore + f4 * scaleCore), (double)(posY + f2 * scaleCore), (double)(posZ - f3 * scaleCore + f5 * scaleCore), (double)x1, (double)x2);
-        tessellator.addVertexWithUV((double)(posX + f1 * scaleCore + f4 * scaleCore), (double)(posY + f2 * scaleCore), (double)(posZ + f3 * scaleCore + f5 * scaleCore), (double)x0, (double)x2);
-        tessellator.addVertexWithUV((double)(posX + f1 * scaleCore - f4 * scaleCore), (double)(posY - f2 * scaleCore), (double)(posZ + f3 * scaleCore - f5 * scaleCore), (double)x0, (double)x3);
+        tessellator.addVertexWithUV((double) (posX - f1 * scaleCore - f4 * scaleCore), (double) (posY - f2 * scaleCore), (double) (posZ - f3 * scaleCore - f5 * scaleCore), (double) x1, (double) x3);
+        tessellator.addVertexWithUV((double) (posX - f1 * scaleCore + f4 * scaleCore), (double) (posY + f2 * scaleCore), (double) (posZ - f3 * scaleCore + f5 * scaleCore), (double) x1, (double) x2);
+        tessellator.addVertexWithUV((double) (posX + f1 * scaleCore + f4 * scaleCore), (double) (posY + f2 * scaleCore), (double) (posZ + f3 * scaleCore + f5 * scaleCore), (double) x0, (double) x2);
+        tessellator.addVertexWithUV((double) (posX + f1 * scaleCore - f4 * scaleCore), (double) (posY - f2 * scaleCore), (double) (posZ + f3 * scaleCore - f5 * scaleCore), (double) x0, (double) x3);
         tessellator.draw();
         GL11.glDisable(3042);
         GL11.glDepthMask(true);
@@ -130,16 +130,16 @@ public class TileTransformerRender extends TileEntitySpecialRenderer {
     }
 
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
-        this.renderTileEntityAt((TileEntityTransformer)te, x, y, z, scale);
+        this.renderTileEntityAt((TileEntityTransformer) te, x, y, z, scale);
     }
 
     public void renderTileEntityAt(TileEntityTransformer tileTransformer, double x, double y, double z, float scale) {
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
+        GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GL11.glPushMatrix();
         GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(transfTextloc);
-        this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
         GL11.glPopMatrix();
         if (tileTransformer.isActive()) {
@@ -154,15 +154,15 @@ public class TileTransformerRender extends TileEntitySpecialRenderer {
         if (world != null) {
             int dir = world.getBlockMetadata(x, y, z);
             GL11.glPushMatrix();
-            GL11.glRotatef((float)(dir * 90), 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef((float) (dir * 90), 0.0F, 1.0F, 0.0F);
             FMLClientHandler.instance().getClient().renderEngine.bindTexture(transfTextloc);
-            this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+            this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
             GL11.glPopMatrix();
         } else {
             GL11.glPushMatrix();
             GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
             FMLClientHandler.instance().getClient().renderEngine.bindTexture(transfTextloc);
-            this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+            this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
             GL11.glPopMatrix();
         }
 

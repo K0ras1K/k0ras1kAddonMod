@@ -151,14 +151,14 @@ public class TileEntitySolarPanel extends TileEntityBase implements IEnergyTile,
             boolean needInvUpdate = false;
             double sentPacket = 0.0D;
 
-            for(int i = 0; i < this.chargeSlots.length; ++i) {
+            for (int i = 0; i < this.chargeSlots.length; ++i) {
                 if (this.chargeSlots[i] != null && this.chargeSlots[i].getItem() instanceof IElectricItem && this.storage > 0) {
-                    sentPacket = ElectricItem.manager.charge(this.chargeSlots[i], (double)this.storage, 2147483647, false, false);
+                    sentPacket = ElectricItem.manager.charge(this.chargeSlots[i], (double) this.storage, 2147483647, false, false);
                     if (sentPacket > 0.0D) {
                         needInvUpdate = true;
                     }
 
-                    this.storage = (int)((double)this.storage - sentPacket);
+                    this.storage = (int) ((double) this.storage - sentPacket);
                 }
             }
 
@@ -211,7 +211,7 @@ public class TileEntitySolarPanel extends TileEntityBase implements IEnergyTile,
         NBTTagList nbttaglist = nbttagcompound.getTagList("Items", 10);
         this.chargeSlots = new ItemStack[this.getSizeInventory()];
 
-        for(int i = 0; i < nbttaglist.tagCount(); ++i) {
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound1.getByte("Slot") & 255;
             if (j >= 0 && j < this.chargeSlots.length) {
@@ -229,10 +229,10 @@ public class TileEntitySolarPanel extends TileEntityBase implements IEnergyTile,
         nbttagcompound.setInteger("lastY", this.lastY);
         nbttagcompound.setInteger("lastZ", this.lastZ);
 
-        for(int i = 0; i < this.chargeSlots.length; ++i) {
+        for (int i = 0; i < this.chargeSlots.length; ++i) {
             if (this.chargeSlots[i] != null) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte)i);
+                nbttagcompound1.setByte("Slot", (byte) i);
                 this.chargeSlots[i].writeToNBT(nbttagcompound1);
                 nbttaglist.appendTag(nbttagcompound1);
             }
@@ -258,7 +258,7 @@ public class TileEntitySolarPanel extends TileEntityBase implements IEnergyTile,
     }
 
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return entityplayer.getDistance((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return entityplayer.getDistance((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
     public void openInventory() {
@@ -381,11 +381,11 @@ public class TileEntitySolarPanel extends TileEntityBase implements IEnergyTile,
     }
 
     public double getOfferedEnergy() {
-        return (double)Math.min(this.production, this.storage);
+        return (double) Math.min(this.production, this.storage);
     }
 
     public void drawEnergy(double amount) {
-        this.storage = (int)((double)this.storage - amount);
+        this.storage = (int) ((double) this.storage - amount);
     }
 
     public int getSourceTier() {

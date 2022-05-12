@@ -25,9 +25,9 @@ public class UpgradeSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack itemStack) {
-       if (itemStack.getItem() instanceof ItemNeutronUpgrade ){
-           return true;
-       }
-       return false;
+        if (itemStack.getItem() instanceof ItemNeutronUpgrade) {
+            return true;
+        }
+        return false;
     }
 }

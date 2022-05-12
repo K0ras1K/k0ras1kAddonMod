@@ -1,4 +1,4 @@
-package k0ras1k.items.armor;
+package k0ras1k.items.electric;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -24,7 +24,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import java.util.List;
 import java.util.Random;
 
-public class EnergyArmor extends ItemArmor implements IElectricItem, IMetalArmor, ISpecialArmor, ICustomDamageItem {
+public class BaseElectricArmor extends ItemArmor implements IElectricItem, IMetalArmor, ISpecialArmor, ICustomDamageItem {
     private String name;
 
     // IElectricItem
@@ -38,8 +38,8 @@ public class EnergyArmor extends ItemArmor implements IElectricItem, IMetalArmor
     protected double damageAbsorptionRatio;
     protected double baseAbsorptionRatio;
 
-    public EnergyArmor(String name, int energyTier, double maxCharge, double transferLimit, boolean providesEnergy,
-                       int energyPerDamage, ArmorMaterial armorMaterial, int armorType) {
+    public BaseElectricArmor(String name, int energyTier, double maxCharge, double transferLimit, boolean providesEnergy,
+                             int energyPerDamage, ArmorMaterial armorMaterial, int armorType) {
         super(armorMaterial, 0, armorType);
 
         this.name = name;

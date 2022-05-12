@@ -57,23 +57,22 @@ public class BlockCandyPanel extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side){
-        if(side == 1)
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+        if (side == 1)
             return top;
         return sides;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon (int side, int metadata)
-    {
-        if(side == 1)
+    public IIcon getIcon(int side, int metadata) {
+        if (side == 1)
             return top;
         return sides;
     }
 
     public static boolean isActive(IBlockAccess var0, int var1, int var2, int var3) {
-        return ((TileEntityBase)var0.getTileEntity(var1, var2, var3)).getActive();
+        return ((TileEntityBase) var0.getTileEntity(var1, var2, var3)).getActive();
     }
 
     public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
@@ -95,12 +94,9 @@ public class BlockCandyPanel extends BlockContainer {
     }
 
     public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int s, float f1, float f2, float f3) {
-        if (world.isRemote)
-        {
+        if (world.isRemote) {
             return true;
-        }
-        else
-        {
+        } else {
             FMLNetworkHandler.openGui(player, Main.instance, 2, world, i, j, k);
             return true;
         }
@@ -111,21 +107,21 @@ public class BlockCandyPanel extends BlockContainer {
         if (tileentity instanceof IInventory) {
             IInventory inventory = tileentity;
 
-            for(int i = 0; i < inventory.getSizeInventory(); ++i) {
+            for (int i = 0; i < inventory.getSizeInventory(); ++i) {
                 ItemStack item = inventory.getStackInSlot(i);
                 if (item != null && item.stackSize > 0) {
                     float rx = rand.nextFloat() * 0.8F + 0.1F;
                     float ry = rand.nextFloat() * 0.8F + 0.1F;
                     float rz = rand.nextFloat() * 0.8F + 0.1F;
-                    EntityItem entityItem = new EntityItem(world, (double)((float)tileentity.xCoord + rx), (double)((float)tileentity.yCoord + ry), (double)((float)tileentity.zCoord + rz), new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
+                    EntityItem entityItem = new EntityItem(world, (double) ((float) tileentity.xCoord + rx), (double) ((float) tileentity.yCoord + ry), (double) ((float) tileentity.zCoord + rz), new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
                     if (item.hasTagCompound()) {
-                        entityItem.getEntityItem().setTagCompound((NBTTagCompound)item.getTagCompound().copy());
+                        entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
                     }
 
                     float factor = 0.05F;
-                    entityItem.motionX = rand.nextGaussian() * (double)factor;
-                    entityItem.motionY = rand.nextGaussian() * (double)factor + 0.20000000298023224D;
-                    entityItem.motionZ = rand.nextGaussian() * (double)factor;
+                    entityItem.motionX = rand.nextGaussian() * (double) factor;
+                    entityItem.motionY = rand.nextGaussian() * (double) factor + 0.20000000298023224D;
+                    entityItem.motionZ = rand.nextGaussian() * (double) factor;
                     world.spawnEntityInWorld(entityItem);
                     item.stackSize = 0;
                 }
@@ -138,7 +134,7 @@ public class BlockCandyPanel extends BlockContainer {
         return new TileEntitySolarPanel(this.tileName, this.genDay, this.genNight, this.maxStorage, this.production);
     }
 
-    public String getPanelColor(){
+    public String getPanelColor() {
         return this.color;
     }
 

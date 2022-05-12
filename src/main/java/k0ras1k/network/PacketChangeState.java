@@ -7,8 +7,10 @@ package k0ras1k.network;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTSizeTracker;
@@ -72,7 +74,7 @@ public class PacketChangeState extends IPacket {
         World w = Minecraft.getMinecraft().theWorld;
         TileEntity te = w.getTileEntity(this.x, this.y, this.z);
         if (te != null && te instanceof IReceiveServerEvents) {
-            ((IReceiveServerEvents)te).onServerEvent(this.eventID, this.nbtData);
+            ((IReceiveServerEvents) te).onServerEvent(this.eventID, this.nbtData);
         }
 
     }

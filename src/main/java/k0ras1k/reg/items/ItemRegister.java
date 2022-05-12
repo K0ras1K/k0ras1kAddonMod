@@ -4,7 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import static k0ras1k.reg.items.ItemList.*;
 
-public class ItemRegister{
+public class ItemRegister {
 
     public static void init() {
         ItemRegister();

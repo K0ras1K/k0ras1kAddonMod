@@ -9,7 +9,7 @@ public class ArmorHook {
 
     @Hook(injectOnExit = true, returnCondition = ReturnCondition.ALWAYS)
     public static int getTotalArmorValue(ForgeHooks fh, EntityPlayer player, @Hook.ReturnValue int returnValue) {
-        return returnValue/2;
+        return returnValue / 2;
     }
 
 }

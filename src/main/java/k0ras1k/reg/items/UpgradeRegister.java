@@ -7,9 +7,6 @@ import static k0ras1k.reg.items.ItemList.*;
 public class UpgradeRegister {
 
 
-
-
-
     public static void init() {
         UpgradeRegister();
     }

@@ -11,13 +11,11 @@ import static k0ras1k.reg.blocks.BlockList.*;
 public class BlocksSolarPanelRegister {
 
 
-
-
-    public static void init(){
+    public static void init() {
         BlocksSolarPanelRegister();
     }
 
-    public static void BlocksSolarPanelRegister(){
+    public static void BlocksSolarPanelRegister() {
         GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "solar_panel");
         GameRegistry.registerBlock(candy_panel_blue, "candy_panel_blue");
         GameRegistry.registerBlock(candy_panel_yellow, "candy_panel_yellow");

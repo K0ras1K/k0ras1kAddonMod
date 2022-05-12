@@ -15,8 +15,8 @@ public class K0ras1KChannelHandler extends FMLIndexedMessageToMessageCodec<IPack
     public K0ras1KChannelHandler() {
         Iterator i$ = K0ras1KPacketHandler.packetTypes.iterator();
 
-        while(i$.hasNext()) {
-            Class clazz = (Class)i$.next();
+        while (i$.hasNext()) {
+            Class clazz = (Class) i$.next();
             this.addDiscriminator(K0ras1KPacketHandler.packetTypes.indexOf(clazz), clazz);
         }
 

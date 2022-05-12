@@ -9,6 +9,7 @@ public class CommonProxy {
         MTAPI.manager = MTRecipeManager.instance;
         MTRecipeManager.instance.initRecipes();
     }
+
     public void registerRenderers() {
     }
 }

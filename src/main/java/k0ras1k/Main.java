@@ -45,16 +45,16 @@ public class Main {
 
 
     public static String configFileName;
+
     public static boolean isSimulating() {
         return !FMLCommonHandler.instance().getEffectiveSide().isClient();
     }
+
     public static void addLog(String logLine) {
         System.out.println("[AdvancedSolarPanel] " + logLine);
     }
 
     public static int blockTransformerRenderID;
-
-
 
 
     @Mod.EventHandler
@@ -72,8 +72,6 @@ public class Main {
         UpgradeRegister.init();
         ItemRegister.init();
         MTRecipeConfig.doDebug();
-
-
 
 
     }

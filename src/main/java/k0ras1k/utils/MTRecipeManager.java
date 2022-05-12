@@ -1,8 +1,6 @@
 
 
 
-
-
 package k0ras1k.utils;
 
 import k0ras1k.api.IMTRecipeManager;
@@ -10,11 +8,13 @@ import k0ras1k.Main;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -39,12 +39,12 @@ public class MTRecipeManager implements IMTRecipeManager {
             if (inputs.size() != 0) {
                 Iterator i$ = inputs.iterator();
 
-                while(i$.hasNext()) {
-                    ItemStack inputIS = (ItemStack)i$.next();
+                while (i$.hasNext()) {
+                    ItemStack inputIS = (ItemStack) i$.next();
                     i$ = outputs.iterator();
 
-                    while(i$.hasNext()) {
-                        ItemStack outputIS = (ItemStack)i$.next();
+                    while (i$.hasNext()) {
+                        ItemStack outputIS = (ItemStack) i$.next();
                         this.addMTRecipe(inputIS.copy(), outputIS.copy(), catalizator, energy);
                     }
                 }
@@ -57,8 +57,8 @@ public class MTRecipeManager implements IMTRecipeManager {
         List<ItemStack> inputs = OreDictionary.getOres(input);
         Iterator i$ = inputs.iterator();
 
-        while(i$.hasNext()) {
-            ItemStack inputIS = (ItemStack)i$.next();
+        while (i$.hasNext()) {
+            ItemStack inputIS = (ItemStack) i$.next();
             this.addMTRecipe(inputIS.copy(), output.copy(), catalizator, energy);
         }
 
@@ -69,14 +69,13 @@ public class MTRecipeManager implements IMTRecipeManager {
         if (outputs.size() != 0) {
             Iterator i$ = outputs.iterator();
 
-            while(i$.hasNext()) {
-                ItemStack outputIS = (ItemStack)i$.next();
+            while (i$.hasNext()) {
+                ItemStack outputIS = (ItemStack) i$.next();
                 this.addMTRecipe(input.copy(), outputIS.copy(), catalizator, energy);
             }
 
         }
     }
-
 
 
     public void initRecipes() {
@@ -115,10 +114,10 @@ public class MTRecipeManager implements IMTRecipeManager {
             Item i = is.getItem();
             if (i instanceof ItemBlock) {
                 Block b = Block.getBlockFromItem(i);
-                UniqueIdentifier ui = (UniqueIdentifier)getUniqueName_Block.invoke((Object)null, b);
+                UniqueIdentifier ui = (UniqueIdentifier) getUniqueName_Block.invoke((Object) null, b);
                 return new MTRecipeManager.RawItemData(ui.modId, ui.name);
             } else {
-                UniqueIdentifier ui = (UniqueIdentifier)getUniqueName_Item.invoke((Object)null, i);
+                UniqueIdentifier ui = (UniqueIdentifier) getUniqueName_Item.invoke((Object) null, i);
                 return new MTRecipeManager.RawItemData(ui.modId, ui.name);
             }
         } catch (Throwable var4) {

@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class TileEntityTransformer  extends TileEntityBase implements IEnergyTile, IWrenchable, IInventory, IEnergySink, ISidedInventory, INetworkDataProvider, INetworkUpdateListener, INetworkTileEntityEventListener, IReceiveServerEvents {
+public class TileEntityTransformer extends TileEntityBase implements IEnergyTile, IWrenchable, IInventory, IEnergySink, ISidedInventory, INetworkDataProvider, INetworkUpdateListener, INetworkTileEntityEventListener, IReceiveServerEvents {
 
     private static final int[] slots_top = new int[]{0};
     private static final int[] slots_bottom = new int[]{1, 1};
@@ -196,27 +196,27 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
         if (this.workSlots[0] == null) {
             return false;
         } else {
-            for(int i = 0; i < MTRecipeManager.transformerRecipes.size(); ++i) {
-                ItemStack tmpItemStack = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).inputStack;
+            for (int i = 0; i < MTRecipeManager.transformerRecipes.size(); ++i) {
+                ItemStack tmpItemStack = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).inputStack;
                 if (this.isItemEqual(this.workSlots[0], tmpItemStack, this.workSlots[2])) {
                     if (this.workSlots[1] != null) {
-                        if (!this.isItemEqual(this.workSlots[1], ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).outputStack, MTRecipeManager.transformerRecipes.get(i).catalizatorStack)) {
+                        if (!this.isItemEqual(this.workSlots[1], ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).outputStack, MTRecipeManager.transformerRecipes.get(i).catalizatorStack)) {
                             return false;
                         }
 
-                        if (this.workSlots[1].stackSize + ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).outputStack.stackSize > this.workSlots[1].getMaxStackSize()) {
+                        if (this.workSlots[1].stackSize + ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).outputStack.stackSize > this.workSlots[1].getMaxStackSize()) {
                             return false;
                         }
                     }
 
-                    if (this.workSlots[0].stackSize < ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).inputStack.stackSize) {
+                    if (this.workSlots[0].stackSize < ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).inputStack.stackSize) {
                         return false;
                     }
 
-                    this.lastRecipeInput = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).inputStack.copy();
-                    this.lastRecipeOutput = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).outputStack.copy();
+                    this.lastRecipeInput = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).inputStack.copy();
+                    this.lastRecipeOutput = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).outputStack.copy();
                     this.lastRecipeCatalizator = MTRecipeManager.transformerRecipes.get(i).catalizatorStack.copy();
-                    this.lastRecipeEnergyPerOperation = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).energyPerOperation;
+                    this.lastRecipeEnergyPerOperation = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).energyPerOperation;
                     this.lastRecipeNumber = i;
                     return true;
                 }
@@ -268,8 +268,8 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
 
     private void updateProgress() {
         if (this.doWork) {
-            float tmpProgress = (float)this.lastRecipeEnergyUsed / (float)this.lastRecipeEnergyPerOperation * 100.0F;
-            this.lastProgress = (short)Math.round(tmpProgress);
+            float tmpProgress = (float) this.lastRecipeEnergyUsed / (float) this.lastRecipeEnergyPerOperation * 100.0F;
+            this.lastProgress = (short) Math.round(tmpProgress);
             if (this.lastRecipeEnergyUsed == this.lastRecipeEnergyPerOperation) {
                 this.lastProgress = 100;
             }
@@ -313,7 +313,7 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
         NBTTagList nbttaglist_recipe = nbttagcompound.getTagList("Recipes", 10);
 
         int i;
-        for(i = 0; i < nbttaglist_recipe.tagCount(); ++i) {
+        for (i = 0; i < nbttaglist_recipe.tagCount(); ++i) {
             NBTTagCompound nbttagcompound_recipe = nbttaglist_recipe.getCompoundTagAt(i);
             if (i == 0) {
                 this.lastRecipeInput = ItemStack.loadItemStackFromNBT(nbttagcompound_recipe);
@@ -344,7 +344,7 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
         NBTTagList nbttaglist = nbttagcompound.getTagList("Items", 10);
         this.workSlots = new ItemStack[this.getSizeInventory()];
 
-        for(i = 0; i < nbttaglist.tagCount(); ++i) {
+        for (i = 0; i < nbttaglist.tagCount(); ++i) {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound1.getByte("Slot") & 255;
             if (j >= 0 && j < this.workSlots.length) {
@@ -355,9 +355,9 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
     }
 
     public int searchRecipeNumber(ItemStack inputStack, ItemStack outputStack, ItemStack catalizator) {
-        for(int i = 0; i < MTRecipeManager.transformerRecipes.size(); ++i) {
-            ItemStack tmpInputStack = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).inputStack;
-            ItemStack tmpOutputStack = ((MTRecipeRecord)MTRecipeManager.transformerRecipes.get(i)).outputStack;
+        for (int i = 0; i < MTRecipeManager.transformerRecipes.size(); ++i) {
+            ItemStack tmpInputStack = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).inputStack;
+            ItemStack tmpOutputStack = ((MTRecipeRecord) MTRecipeManager.transformerRecipes.get(i)).outputStack;
             if (this.isItemEqual(inputStack, tmpInputStack, catalizator) && this.isItemEqual(outputStack, tmpOutputStack, catalizator)) {
                 return i;
             }
@@ -398,10 +398,10 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
         nbttaglist_recipe.appendTag(nbttagcompound_recipe);
         nbttagcompound.setTag("Recipes", nbttaglist_recipe);
 
-        for(int i = 0; i < this.workSlots.length; ++i) {
+        for (int i = 0; i < this.workSlots.length; ++i) {
             if (this.workSlots[i] != null) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte)i);
+                nbttagcompound1.setByte("Slot", (byte) i);
                 this.workSlots[i].writeToNBT(nbttagcompound1);
                 nbttaglist.appendTag(nbttagcompound1);
             }
@@ -420,7 +420,7 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
 
     public void setActive(boolean activeState, boolean network) {
         if (network && activeState != this.isActive) {
-            PacketChangeState.issue(this, activeState ? 1 : 0, (NBTTagCompound)null);
+            PacketChangeState.issue(this, activeState ? 1 : 0, (NBTTagCompound) null);
         }
 
         if (activeState != this.isActive) {
@@ -439,7 +439,7 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
     }
 
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return entityplayer.getDistance((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return entityplayer.getDistance((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
     public int tickRate() {
@@ -487,7 +487,7 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
         if (itemStack == null) {
             return null;
         } else if (amount >= itemStack.stackSize) {
-            this.setInventorySlotContents(index, (ItemStack)null);
+            this.setInventorySlotContents(index, (ItemStack) null);
             return itemStack;
         } else {
             itemStack.stackSize -= amount;
@@ -532,7 +532,7 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
 
     public void onServerEvent(int event, NBTTagCompound nbtData) {
         Thread.getAllStackTraces();
-        switch(event) {
+        switch (event) {
             case 0:
                 this.setActive(false, false);
                 break;
@@ -563,20 +563,20 @@ public class TileEntityTransformer  extends TileEntityBase implements IEnergyTil
             this.inputEU = 0;
             return 0.0D;
         } else {
-            return this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed >= 0 ? (double)(this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed) : 0.0D;
+            return this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed >= 0 ? (double) (this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed) : 0.0D;
         }
     }
 
     public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
-        this.inputEU = (int)amount;
+        this.inputEU = (int) amount;
         if (!this.doWork) {
             return amount;
-        } else if ((double)(this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed) >= amount) {
-            this.energyBuffer = (int)((double)this.energyBuffer + amount);
+        } else if ((double) (this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed) >= amount) {
+            this.energyBuffer = (int) ((double) this.energyBuffer + amount);
             return 0.0D;
         } else {
-            this.energyBuffer = (int)((double)this.energyBuffer + (amount - (double)(this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed)));
-            return amount - (double)(this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed);
+            this.energyBuffer = (int) ((double) this.energyBuffer + (amount - (double) (this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed)));
+            return amount - (double) (this.lastRecipeEnergyPerOperation - this.lastRecipeEnergyUsed);
         }
     }
 

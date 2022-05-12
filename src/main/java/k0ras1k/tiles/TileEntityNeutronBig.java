@@ -18,7 +18,6 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
     private int facing = 2;
 
 
-
     private int getProductionTime() {
         for (int i = 0; i < 4; ++i) {
             if (i != 2) {
@@ -107,8 +106,7 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
             NBTTagCompound upgradeSlot = new NBTTagCompound();
             this.upgrade.writeToNBT(upgradeSlot);
             tag.setTag("Upgrade", upgradeSlot);
-        }
-        else{
+        } else {
             tag.removeTag("Upgrade");
         }
 
@@ -116,8 +114,7 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
             NBTTagCompound upgradeSlot1 = new NBTTagCompound();
             this.upgrade1.writeToNBT(upgradeSlot1);
             tag.setTag("Upgrade1", upgradeSlot1);
-        }
-        else{
+        } else {
             tag.removeTag("Upgrade1");
         }
 
@@ -125,11 +122,9 @@ public class TileEntityNeutronBig extends TileEntityNeutron {
             NBTTagCompound upgradeSlot2 = new NBTTagCompound();
             this.upgrade2.writeToNBT(upgradeSlot2);
             tag.setTag("Upgrade2", upgradeSlot2);
-        }
-        else{
+        } else {
             tag.removeTag("Upgrade2");
         }
-
 
 
     }

@@ -43,7 +43,7 @@ public class GuiCandyPanel extends GuiContainer {
         this.fontRendererObj.drawString(generatingString, 104, 31, 13487565);
         this.fontRendererObj.drawString(String.valueOf(this.tileentity.generating), 104, 41, 13487565);
         this.fontRendererObj.drawString(energyPerTickString, 104, 51, 13487565);
-        }
+    }
 
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -66,7 +66,8 @@ public class GuiCandyPanel extends GuiContainer {
         }
 
     }
-    public void changeGuiLocation(){
+
+    public void changeGuiLocation() {
         tex = new ResourceLocation("k0ras1k", "textures/gui/Gui_" + this.tileentity.panelName + ".png");
     }
 

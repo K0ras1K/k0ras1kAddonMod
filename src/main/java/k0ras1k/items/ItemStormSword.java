@@ -12,7 +12,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -21,6 +20,7 @@ import k0ras1k.Main;
 public class ItemStormSword extends BaseElectricSword {
 
     private IIcon[] textures;
+
 
     public ItemStormSword(String name, String texture) {
         super(ItemToolMaterial.stormSkySword, 3, 100000, 1000, false);
@@ -90,7 +90,7 @@ public class ItemStormSword extends BaseElectricSword {
                 this.useEnergy(itemStack, 1000);
             }
         } else {
-            if (nbtData != null){
+            if (nbtData != null) {
                 if (itemStack.stackTagCompound.getInteger("charge") > 100) {
                     this.useEnergy(itemStack, 100);
                 }

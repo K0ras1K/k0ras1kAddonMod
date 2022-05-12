@@ -25,13 +25,13 @@ public class ContainerTransformer extends Container {
         this.addSlotToContainer(new Slot(this.tileentity, 2, 120, 16));
 
         int j;
-        for(j = 0; j < 3; ++j) {
-            for(int k = 0; k < 9; ++k) {
+        for (j = 0; j < 3; ++j) {
+            for (int k = 0; k < 9; ++k) {
                 this.addSlotToContainer(new Slot(inventoryplayer, k + j * 9 + 9, 8 + k * 18, 84 + j * 18));
             }
         }
 
-        for(j = 0; j < 9; ++j) {
+        for (j = 0; j < 9; ++j) {
             this.addSlotToContainer(new Slot(inventoryplayer, j, 8 + j * 18, 142));
         }
 
@@ -53,8 +53,8 @@ public class ContainerTransformer extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        for(int i = 0; i < this.crafters.size(); ++i) {
-            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+        for (int i = 0; i < this.crafters.size(); ++i) {
+            ICrafting icrafting = (ICrafting) this.crafters.get(i);
             icrafting.sendProgressBarUpdate(this, 0, this.tileentity.lastRecipeEnergyUsed & '\uffff');
             icrafting.sendProgressBarUpdate(this, 1, this.tileentity.lastRecipeEnergyUsed >>> 16);
             icrafting.sendProgressBarUpdate(this, 2, this.tileentity.lastRecipeEnergyPerOperation & '\uffff');
@@ -105,7 +105,7 @@ public class ContainerTransformer extends Container {
         }
 
         if (index == 5) {
-            this.tileentity.lastProgress = (short)value;
+            this.tileentity.lastProgress = (short) value;
         }
 
         if (index == 6) {
@@ -127,7 +127,7 @@ public class ContainerTransformer extends Container {
         int mySlotsCount = 2;
         int mainInventorySlotsEnd = 27 + mySlotsCount;
         int hotBarslotsEnd = this.inventorySlots.size();
-        Slot slotObject = (Slot)this.inventorySlots.get(par2);
+        Slot slotObject = (Slot) this.inventorySlots.get(par2);
         if (slotObject != null && slotObject.getHasStack()) {
             ItemStack stackInSlot = slotObject.getStack();
             stack = stackInSlot.copy();
@@ -144,7 +144,7 @@ public class ContainerTransformer extends Container {
             }
 
             if (stackInSlot.stackSize == 0) {
-                slotObject.putStack((ItemStack)null);
+                slotObject.putStack((ItemStack) null);
             } else {
                 slotObject.onSlotChanged();
             }
