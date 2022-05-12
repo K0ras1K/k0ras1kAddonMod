@@ -11,10 +11,10 @@ public class MainBlocksRegister {
 
 
     public static void init() {
-        lightBlocksRegister();
+        MainBlocksRegister();
     }
 
-    public static void lightBlocksRegister() {
+    public static void MainBlocksRegister() {
 
         GameRegistry.registerTileEntity(TileEntityNeutronBig.class, "Neutron Collector Big");
         GameRegistry.registerBlock(neutron_collector_big, "neutron_collector_big");
