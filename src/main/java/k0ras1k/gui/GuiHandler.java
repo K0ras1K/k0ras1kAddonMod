@@ -1,14 +1,12 @@
 package k0ras1k.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import k0ras1k.container.ContainerBigFurnance;
-import k0ras1k.container.ContainerNeutronBig;
-import k0ras1k.container.ContainerSolarPanel;
-import k0ras1k.container.ContainerTransformer;
+import k0ras1k.container.*;
 import k0ras1k.gui.solarPanels.candyPanels.*;
 import k0ras1k.tiles.TileEntityBigFurnance;
 import k0ras1k.tiles.TileEntityNeutronBig;
 import k0ras1k.tiles.TileEntityTransformer;
+import k0ras1k.tiles.machines.TileEntityWaterGenerator;
 import k0ras1k.tiles.panels.TileEntitySolarPanel;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +27,9 @@ public class GuiHandler implements IGuiHandler {
             } else if (tileEntity instanceof TileEntitySolarPanel) {
                 return new GuiCandyPanel(player.inventory, (TileEntitySolarPanel) world.getTileEntity(x, y, z));
             }
+            else if (tileEntity instanceof TileEntityWaterGenerator) {
+                return new GuiWaterGenerator(player.inventory, (TileEntityWaterGenerator) world.getTileEntity(x, y, z));
+            }
 
         }
         return null;
@@ -48,7 +49,11 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerSolarPanel(player.inventory, (TileEntitySolarPanel) world.getTileEntity(x, y, z));
             } else if (tileEntity instanceof TileEntityTransformer) {
                 return new ContainerTransformer(player.inventory, (TileEntityTransformer) world.getTileEntity(x, y, z));
-            } else {
+            }
+              else if (tileEntity instanceof TileEntityWaterGenerator){
+                  return new ContainerWaterGenerator(player.inventory.player, (TileEntityWaterGenerator) world.getTileEntity(x, y, z));
+            }
+            else {
                 return null;
             }
         } else {

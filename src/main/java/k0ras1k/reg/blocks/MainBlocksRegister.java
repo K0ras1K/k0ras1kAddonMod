@@ -1,12 +1,11 @@
 package k0ras1k.reg.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import k0ras1k.reg.blocks.BlockList.*;
+import static k0ras1k.reg.blocks.BlockList.*;
 import k0ras1k.tiles.TileEntityBigFurnance;
 import k0ras1k.tiles.TileEntityNeutronBig;
+import k0ras1k.tiles.machines.TileEntityWaterGenerator;
 
-import static k0ras1k.reg.blocks.BlockList.big_furnance;
-import static k0ras1k.reg.blocks.BlockList.neutron_collector_big;
 
 public class MainBlocksRegister {
 
@@ -21,6 +20,8 @@ public class MainBlocksRegister {
         GameRegistry.registerBlock(neutron_collector_big, "neutron_collector_big");
         GameRegistry.registerTileEntity(TileEntityBigFurnance.class, "Big Furnance");
         GameRegistry.registerBlock(big_furnance, "big_furnance");
+        GameRegistry.registerBlock(water_generator, "water_generator");
+        GameRegistry.registerTileEntity(TileEntityWaterGenerator.class, "Water Generator");
 
     }
 
