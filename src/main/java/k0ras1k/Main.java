@@ -12,6 +12,7 @@ import k0ras1k.proxy.CommonProxy;
 import k0ras1k.reg.blocks.BlockList;
 import k0ras1k.reg.blocks.BlocksSolarPanelRegister;
 import k0ras1k.reg.blocks.MainBlocksRegister;
+import k0ras1k.reg.items.ItemRegister;
 import k0ras1k.reg.items.UpgradeRegister;
 import k0ras1k.gui.GuiHandler;
 import k0ras1k.utils.MTRecipeConfig;
@@ -69,7 +70,9 @@ public class Main {
         MainBlocksRegister.init();
         BlocksSolarPanelRegister.init();
         UpgradeRegister.init();
+        ItemRegister.init();
         MTRecipeConfig.doDebug();
+
 
 
 

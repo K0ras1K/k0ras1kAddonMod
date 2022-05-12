@@ -17,16 +17,16 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import k0ras1k.Main;
 
-public class stormSkySword extends ItemSword {
+public class ItemStormSword extends ItemSword {
 
     private IIcon[] textures;
 
-    public stormSkySword(String name, String texture) {
+    public ItemStormSword(String name, String texture) {
         super(ItemToolMaterial.stormSkySword);
-        this.setUnlocalizedName("stormSkySword");
+        this.setUnlocalizedName(name);
         this.setCreativeTab(Main.lightBlocks);
         this.setMaxStackSize(1);
-        this.setTextureName("k0ras1k:stormSkySword0");
+        this.setTextureName(texture);
 
     }
 
@@ -39,7 +39,10 @@ public class stormSkySword extends ItemSword {
 
     public IIcon getIcon(ItemStack stack, int pass) {
         NBTTagCompound tags = stack.getTagCompound();
-        return tags != null && tags.getBoolean("0") ? this.textures[0] : this.textures[1];
+        if (tags != null && tags.getBoolean("0")){
+            return this.textures[0];
+        }
+        return this.textures[1];
     }
 
     @SideOnly(Side.CLIENT)

@@ -3,10 +3,10 @@ package k0ras1k.items;
 import k0ras1k.Main;
 import net.minecraft.item.ItemPickaxe;
 
-public class StormPickaxe extends ItemPickaxe {
+public class ItemStormPickaxe extends ItemPickaxe {
 
 
-    public StormPickaxe(ToolMaterial toolMaterial) {
+    public ItemStormPickaxe(ToolMaterial toolMaterial) {
         super(toolMaterial);
 
         this.setUnlocalizedName("StormPickaxe");
