@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import k0ras1k.items.electric.BaseElectricSword;
 import k0ras1k.materials.ItemToolMaterial;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,12 +18,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import k0ras1k.Main;
 
-public class ItemStormSword extends ItemSword {
+public class ItemStormSword extends BaseElectricSword {
 
     private IIcon[] textures;
 
     public ItemStormSword(String name, String texture) {
-        super(ItemToolMaterial.stormSkySword);
+        super(ItemToolMaterial.stormSkySword, 3, 100000, 1000, false);
         this.setUnlocalizedName(name);
         this.setCreativeTab(Main.lightBlocks);
         this.setMaxStackSize(1);
@@ -39,7 +40,7 @@ public class ItemStormSword extends ItemSword {
 
     public IIcon getIcon(ItemStack stack, int pass) {
         NBTTagCompound tags = stack.getTagCompound();
-        if (tags != null && tags.getBoolean("0")){
+        if (tags != null && tags.getBoolean("0")) {
             return this.textures[0];
         }
         return this.textures[1];
@@ -84,11 +85,16 @@ public class ItemStormSword extends ItemSword {
     @Override
     public boolean hitEntity(ItemStack itemStack, EntityLivingBase player, EntityLivingBase entity) {
         NBTTagCompound nbtData = itemStack.getTagCompound();
-        if (nbtData.getBoolean("0")){
-            itemStack.damageItem(100, entity);
-        }
-        else{
-            itemStack.damageItem(10, entity);
+        if (nbtData != null && nbtData.getBoolean("0")) {
+            if (itemStack.stackTagCompound.getInteger("charge") > 1000) {
+                this.useEnergy(itemStack, 1000);
+            }
+        } else {
+            if (nbtData != null){
+                if (itemStack.stackTagCompound.getInteger("charge") > 100) {
+                    this.useEnergy(itemStack, 100);
+                }
+            }
         }
         return false;
     }
