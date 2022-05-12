@@ -53,10 +53,6 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
     }
 
 
-
-
-
-
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
 

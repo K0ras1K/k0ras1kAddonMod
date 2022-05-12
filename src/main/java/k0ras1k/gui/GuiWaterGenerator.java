@@ -25,6 +25,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiWaterGenerator extends GuiContainer {
     public ContainerWaterGenerator container;
+    public TileEntityWaterGenerator tileentity;
     public String progressLabel;
     public String amplifierLabel;
 
@@ -35,6 +36,7 @@ public class GuiWaterGenerator extends GuiContainer {
         super(new ContainerWaterGenerator(player.player, machine));
         this.progressLabel = StatCollector.translateToLocal("ic2.Matter.gui.info.progress");
         this.amplifierLabel = StatCollector.translateToLocal("ic2.Matter.gui.info.amplifier");
+        this.tileentity = machine;
         this.ySize = ySize;
         this.xSize = xSize;
     }
@@ -47,13 +49,12 @@ public class GuiWaterGenerator extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(tex);
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
     }
 
     public String getName() {
         return StatCollector.translateToLocal("ic2.Matter.gui.name");
-    }
-
-    public ResourceLocation getResourceLocation() {
-        return new ResourceLocation(IC2.textureDomain, "textures/gui/GUIMatter.png");
     }
 }
