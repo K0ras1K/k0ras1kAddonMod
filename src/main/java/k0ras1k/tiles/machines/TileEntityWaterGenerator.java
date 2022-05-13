@@ -130,7 +130,7 @@ public class TileEntityWaterGenerator extends TileEntityLiquidTankElectricMachin
         if (this.fluidTank.getFluidAmount() + 1 > this.fluidTank.getCapacity()) {
             return false;
         } else {
-            this.fill((ForgeDirection) null, new FluidStack(FluidRegistry.getFluid("water"), 1), true);
+            this.fill((ForgeDirection) null, new FluidStack(FluidRegistry.getFluid("water"), 100), true);
             this.energy -= (double) this.maxEnergy;
             return true;
         }

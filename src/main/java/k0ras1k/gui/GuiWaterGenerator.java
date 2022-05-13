@@ -2,7 +2,6 @@ package k0ras1k.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ic2.core.block.machine.tileentity.TileEntityMatter;
 import ic2.core.util.GuiTooltipHelper;
 import k0ras1k.container.ContainerWaterGenerator;
 import k0ras1k.tiles.machines.TileEntityWaterGenerator;
@@ -10,7 +9,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import org.lwjgl.opengl.GL11;
 
@@ -39,7 +37,7 @@ public class GuiWaterGenerator extends GuiContainer {
         super.drawGuiContainerForegroundLayer(par1, par2);
         FluidTank fluidTank = this.tileentity.getFluidTank();
         if (fluidTank != null) {
-            String tooltip =  "water : " + fluidTank.getFluidAmount() + StatCollector.translateToLocal("ic2.generic.text.mb");
+            String tooltip = "water : " + fluidTank.getFluidAmount() + StatCollector.translateToLocal("ic2.generic.text.mb");
             GuiTooltipHelper.drawAreaTooltip(par1 - this.guiLeft, par2 - this.guiTop, tooltip, 99, 25, 112, 73);
         }
         if (this.tileentity.scrap > 0) {
@@ -56,7 +54,7 @@ public class GuiWaterGenerator extends GuiContainer {
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         if (this.tileentity.getMatterValue() > 0) {
             int h = this.tileentity.getMatterValue();
-            this.drawTexturedModalRect(k + 97, l + 20, 176, 0, 15, h);
+            this.drawTexturedModalRect(k + 97, l + 20, 176, 0, 15, 1 + h);
         }
     }
 
