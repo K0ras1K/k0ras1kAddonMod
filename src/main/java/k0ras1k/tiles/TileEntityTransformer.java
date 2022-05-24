@@ -70,6 +70,8 @@ public class TileEntityTransformer extends TileEntityBase implements IEnergyTile
     public int inputEU;
     public boolean loaded = false;
     private static List<String> fields = Arrays.asList();
+    /* Scale */
+    public float scale = 1;
 
     public TileEntityTransformer() {
         this.ticker = randomizer.nextInt(this.tickRate());

@@ -36,3 +36,4 @@ gui.MolecularTransformer.output=Выход
 gui.MolecularTransformer.energyPerOperation=Требуется
 gui.AdvancedSolarPanel.energyPerTick=EU/тик
 gui.MolecularTransformer.progress=Прогресс
+tile.transformer.name=Что то там девяти шакалов

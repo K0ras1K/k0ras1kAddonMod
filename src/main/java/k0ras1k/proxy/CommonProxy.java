@@ -10,6 +10,4 @@ public class CommonProxy {
         MTRecipeManager.instance.initRecipes();
     }
 
-    public void registerRenderers() {
-    }
 }

@@ -1,19 +1,20 @@
 package k0ras1k.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import k0ras1k.Main;
+import k0ras1k.renders.TileTransformerRender;
 import k0ras1k.tiles.TileEntityTransformer;
 import k0ras1k.tiles.panels.TileEntityBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -21,7 +22,6 @@ import java.util.Random;
 
 public class BlockTransformer extends BlockContainer {
 
-    public IIcon icon;
 
     public BlockTransformer() {
         super(Material.iron);
@@ -30,16 +30,25 @@ public class BlockTransformer extends BlockContainer {
         this.setCreativeTab(Main.lightBlocks);
     }
 
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
-        this.icon = par1IconRegister.registerIcon("k0ras1k:qgen_a_side");
-    }
-
+    @Override
     public boolean isOpaqueCube() {
         return false;
     }
 
+    @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }
+
+    @Override
+    public int getRenderType() {
+        return TileTransformerRender.renderId;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass() {
+        return 1;
     }
 
 
@@ -47,6 +56,7 @@ public class BlockTransformer extends BlockContainer {
         return ((TileEntityBase) var0.getTileEntity(var1, var2, var3)).getActive();
     }
 
+    @Override
     public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
         TileEntity tileentity = world.getTileEntity(i, j, k);
         if (tileentity != null) {
@@ -112,9 +122,6 @@ public class BlockTransformer extends BlockContainer {
         }
     }
 
-    public TileEntity getBlockEntity() {
-        return null;
-    }
 
     public TileEntity createNewTileEntity(World var1, int i) {
         return this.getBlockEntity(i);

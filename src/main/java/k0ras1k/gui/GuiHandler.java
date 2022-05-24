@@ -18,7 +18,6 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        Block block = world.getTileEntity(x, y, z).getBlockType();
         if (tileEntity != null) {
             if (tileEntity instanceof TileEntityNeutronBig) {
                 return new GUINeutronBig(player.inventory, (TileEntityNeutronBig) world.getTileEntity(x, y, z));
@@ -29,6 +28,9 @@ public class GuiHandler implements IGuiHandler {
             }
             else if (tileEntity instanceof TileEntityWaterGenerator) {
                 return new GuiWaterGenerator(player.inventory, (TileEntityWaterGenerator) world.getTileEntity(x, y, z));
+            }
+            else if (tileEntity instanceof TileEntityTransformer) {
+                return new GuiTransformer(player.inventory, (TileEntityTransformer) world.getTileEntity(x, y, z));
             }
 
         }
