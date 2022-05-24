@@ -1,9 +1,6 @@
 package k0ras1k.reg.blocks;
 
-import k0ras1k.blocks.BlockBigFurnance;
-import k0ras1k.blocks.BlockNeutronBig;
-import k0ras1k.blocks.BlockTransformer;
-import k0ras1k.blocks.BlockWaterGenerator;
+import k0ras1k.blocks.*;
 import k0ras1k.blocks.solarPanels.candyPanels.BlockCandyPanel;
 import net.minecraft.block.Block;
 
@@ -18,6 +15,7 @@ public class BlockList {
     public static Block neutron_collector_big = new BlockNeutronBig().setBlockName("neutron_collector_big");
     public static Block big_furnance = new BlockBigFurnance().setBlockName("big_furnance");
     public static Block water_generator = new BlockWaterGenerator().setBlockName("water_generator");
+    public static Block piedestal = new BlockPiedestal("piedestal");
 
 
 }

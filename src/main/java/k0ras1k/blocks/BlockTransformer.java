@@ -3,7 +3,7 @@ package k0ras1k.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import k0ras1k.Main;
-import k0ras1k.renders.TileTransformerRender;
+import k0ras1k.renders.TilePilonRender;
 import k0ras1k.tiles.TileEntityTransformer;
 import k0ras1k.tiles.panels.TileEntityBase;
 import net.minecraft.block.Block;
@@ -42,7 +42,7 @@ public class BlockTransformer extends BlockContainer {
 
     @Override
     public int getRenderType() {
-        return TileTransformerRender.renderId;
+        return TilePilonRender.renderId;
     }
 
     @Override
